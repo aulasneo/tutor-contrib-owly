@@ -1,0 +1,5 @@
+recursive-include tutorowly/patches *
+recursive-include tutorowly/templates *
+
+# Include changelog in sdist
+include CHANGELOG.rst
