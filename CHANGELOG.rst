@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog (https://keepachangelog.com/en/1.1.0/),
 and this project adheres to Semantic Versioning (https://semver.org/spec/v2.0.0.html).
 
+Unreleased
+**********
+
+Added
+=====
+
+* Problem creation endpoints and logic for multiple problem types:
+  - Support for dropdown problems with XML generation
+  - Enhanced XML generation for multiple choice problems with input validation and escaping
+  - ``POST /add_problem_content`` endpoint for problem integration
+* Content publishing functionality:
+  - ``POST /publish`` endpoint for publishing courses and units
+  - Content publishing logic with modulestore integration
+* XBlock management capabilities:
+  - ``POST /delete_xblock`` endpoint for removing course components
+  - Delete XBlock logic with modulestore integration
+* Certificate management enhancements:
+  - Toggle certificate logic for managing certificate active status
+  - Certificate activation/deactivation integration in course configuration
+  - Simplified certificate activation logic without certificate_id requirement
+
 Version 19.0.1 (2025-08-27)
 **********
 
