@@ -40,7 +40,6 @@ hooks.Filters.CONFIG_OVERRIDES.add_items(
         # Add values to override settings from Tutor core or other plugins here.
         # Each override is a pair: (setting_name, new_value). For example:
         ### ("PLATFORM_NAME", "My platform"),
-        ("K8S_HARMONY_ADDITIONAL_INGRESS_HOST_LIST", ["owly.{{ LMS_HOST }}"])
     ]
 )
 
