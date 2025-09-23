@@ -11,7 +11,7 @@ Note
 You do not need this plugin to run Owly.
 This Tutor plugin enhances Owly when used with Open edX by:
 
-- Adding extra API endpoints in Open edX to enable advanced features (analytics, course management, roles, etc.).
+- Adding extra API endpoints in Open edX to enable advanced features (analytics, course management, content creation, staff management, roles, etc.).
 - Injecting the Owly chat widget into all LMS and MFE pages when ``OWLY_ENABLE_CHAT`` is enabled.
 
 Installation

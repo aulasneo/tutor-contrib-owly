@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog (https://keepachangelog.com/en/1.1.0/),
 and this project adheres to Semantic Versioning (https://semver.org/spec/v2.0.0.html).
 
+Unreleased
+***************************
+
+Added
+=====
+
+* Owly chat feature flag endpoint:
+  - ``GET /owly-config/enable_owly_chat``: Check if the Owly chat feature is enabled via waffle flag.
+* Advanced problem creation:
+  - ``POST /owly-courses/content/problem/create``: Create any problem component with structured data (e.g., multiple select, numerical input, text input, etc.).
+* Content publishing endpoint:
+  - ``POST /owly-courses/content/publish``: Publish a course or course component (unit, subsection, etc.).
+* XBlock management:
+  - ``POST /owly-courses/xblock/delete``: Delete an XBlock component from a course.
+* Course staff management endpoints:
+  - ``POST /owly-courses/staff/manage``: Add or remove a user from a course staff role (``staff`` or ``course_creator``).
+  - ``GET /owly-courses/staff/list?course_id=<course-key>``: List users with staff roles for a given course.
+
+
 Version 19.1.1 (2025-09-11)
 ***************************
 
