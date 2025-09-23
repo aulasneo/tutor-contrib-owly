@@ -19,7 +19,7 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         ("OWLY_VERSION", __version__),
         ("OWLY_ENABLE_CHAT", False),
         ("OWLY_DJANGO_APP", "openedx-owly-apis==1.2.0"),
-        ('OWLY_MFE_PLATFORM_REPO', 'https://github.com/aulasneo/frontend-platform-owly.git#owly/sumac.2'),
+        ('OWLY_MFE_PLATFORM_REPO', 'https://github.com/aulasneo/frontend-platform-owly.git#owly/sumac.2.1'),
     ]
 )
 
