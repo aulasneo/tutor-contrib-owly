@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog (https://keepachangelog.com/en/1.1.0/),
 and this project adheres to Semantic Versioning (https://semver.org/spec/v2.0.0.html).
 
+Unreleased
+***************************
+
+Updated Django app to use version ``openedx-owly-apis==1.4.0``.
+
 Version 19.2.1 (2025-09-23)
 ***************************
 
