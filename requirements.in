@@ -1,0 +1,5 @@
+tutor==19.0.5
+black
+pylint
+twine
+build

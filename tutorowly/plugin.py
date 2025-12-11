@@ -19,7 +19,10 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         ("OWLY_VERSION", __version__),
         ("OWLY_ENABLE_CHAT", False),
         ("OWLY_DJANGO_APP", "openedx-owly-apis==1.6.0"),
-        ('OWLY_MFE_PLATFORM_REPO', 'https://github.com/aulasneo/frontend-platform-owly.git#owly/sumac.2.1'),
+        (
+            "OWLY_MFE_PLATFORM_REPO",
+            "https://github.com/aulasneo/frontend-platform-owly.git#owly/sumac.2.1",
+        ),
     ]
 )
 
@@ -52,8 +55,7 @@ hooks.Filters.CONFIG_OVERRIDES.add_items(
 # tutorowly/templates/owly/tasks/
 # and then add it to the MY_INIT_TASKS list. Each task is in the format:
 # ("<service>", ("<path>", "<to>", "<script>", "<template>"))
-MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
-]
+MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = []
 
 
 # For each task added to MY_INIT_TASKS, we load the task template
@@ -88,8 +90,7 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     # rendered to ``source_path/destination_path`` (relative to your Tutor environment).
     # For example, ``tutorowly/templates/owly/build``
     # will be rendered to ``$(tutor config printroot)/env/plugins/owly/build``.
-    [
-    ],
+    [],
 )
 
 

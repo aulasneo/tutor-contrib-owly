@@ -3,8 +3,20 @@
 SRC_DIRS = ./tutorowly
 BLACK_OPTS = --exclude templates ${SRC_DIRS}
 
+upgrade: ## Compile requirements from requirements.in
+	pip-compile
+
+requirements: ## Install requirements from requirements.txt
+	pip install -r requirements.txt
+
+build: ## Build the package
+	python -m build
+
+dist: ## Upload package to PyPI
+	twine upload dist/*
+
 # Warning: These checks are not necessarily run on every PR.
-test: test-lint test-types test-format  # Run some static checks.
+test: test-lint test-types test-format test-dist  # Run some static checks.
 
 test-format: ## Run code formatting tests
 	black --check --diff $(BLACK_OPTS)
@@ -14,6 +26,9 @@ test-lint: ## Run code linting tests
 
 test-types: ## Run type checks.
 	mypy --exclude=templates --ignore-missing-imports --implicit-reexport --strict ${SRC_DIRS}
+
+test-dist: ## Check the distribution files
+	twine check dist/*
 
 format: ## Format code automatically
 	black $(BLACK_OPTS)
