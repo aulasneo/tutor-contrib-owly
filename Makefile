@@ -16,7 +16,7 @@ dist: ## Upload package to PyPI
 	twine upload dist/*
 
 # Warning: These checks are not necessarily run on every PR.
-test: test-lint test-types test-format test-dist  # Run some static checks.
+test: test-lint test-types test-format test-dist test-tutor  # Run some static checks.
 
 test-format: ## Run code formatting tests
 	black --check --diff $(BLACK_OPTS)
@@ -29,6 +29,10 @@ test-types: ## Run type checks.
 
 test-dist: ## Check the distribution files
 	twine check dist/*
+
+test-tutor:
+	export TUTOR_ROOT=$$(pwd) && tutor config save
+	tutor plugins enable owly
 
 format: ## Format code automatically
 	black $(BLACK_OPTS)
