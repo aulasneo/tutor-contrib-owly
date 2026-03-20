@@ -1,0 +1,96 @@
+const OWLY_ENABLE_CHAT = {{ "true" if OWLY_ENABLE_CHAT else "false" }};
+const OWLY_CHAT_SCRIPT_URL = '{{ OWLY_CHAT_SCRIPT_URL }}';
+const OWLY_CHAT_FLAG_PATH = '{{ OWLY_CHAT_FLAG_PATH }}';
+const OWLY_SCRIPT_SELECTOR = 'script[data-owly-embed="true"]';
+
+function isOwlyScriptPresent() {
+  return Boolean(
+    document.querySelector(OWLY_SCRIPT_SELECTOR)
+    || document.querySelector(`script[src="${OWLY_CHAT_SCRIPT_URL}"]`)
+  );
+}
+
+function injectOwlyScript(loadOptions = {}) {
+  const root = globalThis;
+  root.owly = root.owly || [];
+  const { owly } = root;
+
+  if (owly.invoked || isOwlyScriptPresent()) {
+    owly.invoked = true;
+    return false;
+  }
+
+  owly.invoked = true;
+  owly._loadOptions = loadOptions;
+
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.async = true;
+  script.src = OWLY_CHAT_SCRIPT_URL;
+  script.setAttribute('data-owly-embed', 'true');
+
+  const firstScript = document.getElementsByTagName('script')[0];
+  if (firstScript?.parentNode) {
+    firstScript.parentNode.insertBefore(script, firstScript);
+  } else {
+    document.head.appendChild(script);
+  }
+
+  return true;
+}
+
+async function loadOwlyScript() {
+  if (!OWLY_ENABLE_CHAT) {
+    return false;
+  }
+
+  if (typeof window !== 'undefined' && window.self !== window.top) {
+    return false;
+  }
+
+  const root = globalThis;
+  root.owly = root.owly || [];
+  const { owly } = root;
+
+  if (owly.invoked) {
+    return false;
+  }
+
+  if (isOwlyScriptPresent()) {
+    owly.invoked = true;
+    return true;
+  }
+
+  owly.load = (_key, loadOptions) => injectOwlyScript(loadOptions);
+
+  try {
+    const { LMS_BASE_URL } = getConfig();
+    if (!LMS_BASE_URL) {
+      return false;
+    }
+
+    const flagUrl = new URL(OWLY_CHAT_FLAG_PATH, LMS_BASE_URL);
+    const response = await fetch(flagUrl.toString(), { credentials: 'include' });
+    if (!response.ok) {
+      return false;
+    }
+
+    const data = await response.json().catch(() => ({}));
+    if (data?.enabled !== true) {
+      return false;
+    }
+
+    return injectOwlyScript();
+  } catch (error) {
+    console.error('Failed to initialize Owly chat from MFE slot', error);
+    return false;
+  }
+}
+
+function OwlyChatLoader() {
+  React.useEffect(() => {
+    loadOwlyScript();
+  }, []);
+
+  return null;
+}

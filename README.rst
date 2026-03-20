@@ -17,6 +17,8 @@ This Tutor plugin enhances Owly when used with Open edX by:
 Installation
 ************
 
+This plugin supports Tutor 20.x.
+
 .. code-block:: bash
 
     pip install git+https://github.com/aulasneo/tutor-contrib-owly
@@ -30,6 +32,8 @@ Usage
     tutor images build openedx
     tutor images build mfe
     tutor local start
+
+If you are enabling chat support, make sure the ``mfe`` plugin is enabled in Tutor as well.
 
 Configuration
 *************
