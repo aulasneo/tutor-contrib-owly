@@ -22,12 +22,19 @@ function injectOwlyScript(loadOptions = {}) {
 
   owly.invoked = true;
   owly._loadOptions = loadOptions;
+  root.OwlyChatbotContext = Object.assign({}, root.OwlyChatbotContext || {}, loadOptions);
 
   const script = document.createElement('script');
   script.type = 'text/javascript';
   script.async = true;
   script.src = OWLY_CHAT_SCRIPT_URL;
   script.setAttribute('data-owly-embed', 'true');
+  if (loadOptions.platformType) {
+    script.setAttribute('data-owly-platform-type', loadOptions.platformType);
+  }
+  if (loadOptions.baseUrl) {
+    script.setAttribute('data-owly-base-url', loadOptions.baseUrl);
+  }
 
   const firstScript = document.getElementsByTagName('script')[0];
   if (firstScript?.parentNode) {
@@ -80,7 +87,10 @@ async function loadOwlyScript() {
       return false;
     }
 
-    return injectOwlyScript();
+    return injectOwlyScript({
+      platformType: 'openedx',
+      baseUrl: LMS_BASE_URL,
+    });
   } catch (error) {
     console.error('Failed to initialize Owly chat from MFE slot', error);
     return false;
