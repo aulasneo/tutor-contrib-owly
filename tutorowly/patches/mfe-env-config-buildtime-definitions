@@ -97,6 +97,25 @@ async function loadOwlyScript() {
   }
 }
 
+function autoBootstrapOwlyScript() {
+  const root = globalThis;
+  root.owly = root.owly || [];
+  const { owly } = root;
+
+  if (owly._autoloadPromise) {
+    return owly._autoloadPromise;
+  }
+
+  owly._autoloadPromise = loadOwlyScript().catch((error) => {
+    console.error('Failed to auto-bootstrap Owly chat from MFE config', error);
+    return false;
+  });
+
+  return owly._autoloadPromise;
+}
+
+autoBootstrapOwlyScript();
+
 function OwlyChatLoader() {
   React.useEffect(() => {
     loadOwlyScript();
