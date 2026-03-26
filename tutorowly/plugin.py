@@ -22,7 +22,6 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         # Each new setting is a pair: (setting_name, default_value).
         # Prefix your setting names with 'OWLY_'.
         ("OWLY_VERSION", __version__),
-        ("OWLY_ENABLE_CHAT", False),
         ("OWLY_DJANGO_APP", "openedx-owly-apis==2.0.1"),
         (
             "OWLY_CHAT_SCRIPT_URL",

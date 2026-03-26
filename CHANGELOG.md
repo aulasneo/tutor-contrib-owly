@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Removed the `OWLY_ENABLE_CHAT` setting and its MFE-side gate so chat loads whenever the plugin is enabled, while keeping the backend chat flag endpoint configuration.
 - Updated the bundled Django app dependency to `openedx-owly-apis==2.0.1`.
 - Pass deterministic Owly loader context into Open edX MFEs through both `window.OwlyChatbotContext` and script `data-*` attributes.
 - Inject `platformType="openedx"` and `baseUrl=LMS_BASE_URL` for frontend runtime platform resolution instead of relying on hostname inference.
