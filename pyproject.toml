@@ -11,7 +11,7 @@ authors = [
 license = { text = "Proprietary" }
 
 readme = {file = "README.rst", content-type = "text/x-rst"}
-requires-python = ">= 3.9"
+requires-python = ">=3.9"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -27,9 +27,9 @@ classifiers = [
 
 ]
 dependencies = [
-    "tutor>=19.0.0,<20.0.0",
+    "tutor>=20.0.0,<21.0.0",
 ]
-optional-dependencies = { dev = ["tutor[dev]>=19.0.0,<20.0.0"] }
+optional-dependencies = { dev = ["tutor[dev]>=20.0.0,<21.0.0"] }
 
 # These fields will be set by hatch_build.py
 dynamic = ["version"]

@@ -27,7 +27,7 @@ test-lint: ## Run code linting tests
 test-types: ## Run type checks.
 	mypy --exclude=templates --ignore-missing-imports --implicit-reexport --strict ${SRC_DIRS}
 
-test-dist: ## Check the distribution files
+test-dist: build ## Check the distribution files
 	twine check dist/*
 
 test-tutor:

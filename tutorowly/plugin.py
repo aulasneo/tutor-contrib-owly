@@ -5,6 +5,11 @@ import click
 import importlib_resources
 from tutor import hooks
 
+try:
+    from tutormfe.hooks import PLUGIN_SLOTS
+except ImportError:  # pragma: no cover - Tutor MFE plugin may be absent.
+    PLUGIN_SLOTS = None
+
 from .__about__ import __version__
 
 ########################################
@@ -18,11 +23,12 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         # Prefix your setting names with 'OWLY_'.
         ("OWLY_VERSION", __version__),
         ("OWLY_ENABLE_CHAT", False),
-        ("OWLY_DJANGO_APP", "openedx-owly-apis==1.6.3"),
+        ("OWLY_DJANGO_APP", "openedx-owly-apis==2.0.1"),
         (
-            "OWLY_MFE_PLATFORM_REPO",
-            "https://github.com/aulasneo/frontend-platform-owly.git#owly/sumac.2.1",
+            "OWLY_CHAT_SCRIPT_URL",
+            "https://chat.owly.aulasneo.com/owly-chatbot-embed.min.js",
         ),
+        ("OWLY_CHAT_FLAG_PATH", "/api/v1/owly-config/enable_owly_chat/"),
     ]
 )
 
@@ -105,6 +111,16 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
 for path in glob(str(importlib_resources.files("tutorowly") / "patches" / "*")):
     with open(path, encoding="utf-8") as patch_file:
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
+
+
+if PLUGIN_SLOTS is not None:
+    for path in glob(
+        str(importlib_resources.files("tutorowly") / "plugin_slots" / "*" / "*")
+    ):
+        with open(path, encoding="utf-8") as slot_file:
+            mfe_name = os.path.basename(os.path.dirname(path))
+            slot_name = os.path.basename(path)
+            PLUGIN_SLOTS.add_item((mfe_name, slot_name, slot_file.read()))
 
 
 ########################################
