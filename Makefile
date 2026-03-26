@@ -8,6 +8,7 @@ upgrade: ## Compile requirements from requirements.in
 
 requirements: ## Install requirements from requirements.txt
 	pip install -r requirements.txt
+	pip install -e .
 
 build: ## Build the package
 	python -m build
