@@ -1,0 +1,8 @@
+{
+  op: PLUGIN_OPERATIONS.Insert,
+  widget: {
+    id: 'owly_chat_loader',
+    type: DIRECT_PLUGIN,
+    RenderWidget: OwlyChatLoader,
+  },
+}

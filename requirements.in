@@ -1,4 +1,4 @@
-tutor==19.0.5
+tutor==20.0.3
 black
 pylint
 twine
