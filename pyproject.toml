@@ -11,15 +11,13 @@ authors = [
 license = { text = "Proprietary" }
 
 readme = {file = "README.rst", content-type = "text/x-rst"}
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "License :: Other/Proprietary License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: Implementation :: CPython",
@@ -54,7 +52,7 @@ packages = ["tutorowly"]
 [tool.hatch.build.targets.sdist]
 # Disable strict naming, otherwise twine is not able to detect name/version
 strict-naming = false
-include = [ "/tutorowly", ".hatch_build.py"]
+include = [ "/tutorowly", ".hatch_build.py", "/README.rst", "/CHANGELOG.md"]
 exclude = ["tests*"]
 
 [project.entry-points."tutor.plugin.v1"]

@@ -5,5 +5,6 @@ __pycache__
 *.egg-info/
 /build/
 /dist/
-config.yml
-env/
+/.idea/
+/config.yml
+/env/

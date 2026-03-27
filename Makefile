@@ -1,23 +1,28 @@
 .DEFAULT_GOAL := help
 .PHONY: docs
+
+PYTHON ?= python3
 SRC_DIRS = ./tutorowly
 BLACK_OPTS = --exclude templates ${SRC_DIRS}
+
+clean: ## Remove build artifacts
+	rm -rf build dist *.egg-info
 
 upgrade: ## Compile requirements from requirements.in
 	pip-compile
 
 requirements: ## Install requirements from requirements.txt
-	pip install -r requirements.txt
-	pip install -e .
+	$(PYTHON) -m pip install --upgrade -r requirements.txt
+	$(PYTHON) -m pip install -e .
 
-build: ## Build the package
-	python -m build
+build: clean ## Build the package
+	$(PYTHON) -m build
 
 dist: ## Upload package to PyPI
 	twine upload dist/*
 
 # Warning: These checks are not necessarily run on every PR.
-test: test-lint test-types test-format test-dist test-tutor  # Run some static checks.
+test: test-lint test-types test-format test-dist test-tutor ## Run some static checks.
 
 test-format: ## Run code formatting tests
 	black --check --diff $(BLACK_OPTS)
