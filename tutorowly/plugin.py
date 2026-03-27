@@ -23,7 +23,7 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         # Prefix your setting names with 'OWLY_'.
         ("OWLY_VERSION", __version__),
         ("OWLY_ENABLE_CHAT", False),
-        ("OWLY_DJANGO_APP", "openedx-owly-apis==2.0.0"),
+        ("OWLY_DJANGO_APP", "openedx-owly-apis==2.0.1"),
         ("OWLY_CHAT_SCRIPT_URL", "https://chat.owly.aulasneo.com/owly-chatbot-embed.min.js"),
         ("OWLY_CHAT_FLAG_PATH", "/api/v1/owly-config/enable_owly_chat/"),
     ]

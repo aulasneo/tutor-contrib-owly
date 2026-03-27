@@ -12,7 +12,7 @@ You do not need this plugin to run Owly.
 This Tutor plugin enhances Owly when used with Open edX by:
 
 - Adding extra API endpoints in Open edX to enable advanced features (analytics, course management, content creation, staff management, roles, etc.).
-- Injecting the Owly chat widget into all LMS and MFE pages when ``OWLY_ENABLE_CHAT`` is enabled.
+- Injecting the Owly chat widget into LMS and MFE pages when ``OWLY_ENABLE_CHAT`` is enabled.
 
 Installation
 ************
@@ -40,17 +40,27 @@ Configuration
 
 The following settings are available:
 
-- ``OWLY_ENABLE_CHAT``: Enable the chat feature. Default: ``False``
+- ``OWLY_ENABLE_CHAT``: Enable chat injection. Default: ``False``
 
-When enabling the chat feature, this plugin injects the Owly chat into all LMS and MFE pages.
+When chat is enabled, this plugin injects Owly into LMS and MFE pages.
 You will need to build the MFE image and restart the environment.
 
-Note: Do not enable the chat if you are using a custom ``frontend-platform``; otherwise it will be overwritten.
+Chat visibility is controlled in the LMS by the Django waffle flag ``owly_chat.enable``.
+Like any regular waffle flag, it can be targeted by user, user group, user role, and other standard waffle criteria.
+
+This plugin embeds Owly in all Open edX MFEs. Some Open edX pages are still rendered as HTML instead of MFEs.
+If you want Owly to appear on those HTML pages as well, you need to edit your theme and add the script loader manually, usually in ``head-extra.html``:
+
+.. code-block:: html
+
+    <script type="text/javascript" async="" src="https://chat.owly.aulasneo.com/owly-chatbot-embed.js" data-owly-platform-type="openedx" data-owly-base-url="https://<your campus url>"></script>
+
+Due to OAuth2 restrictions, Owly requires the LMS to be exposed to the public internet.
+It will not work from local-only hosts such as ``localhost``, ``127.0.0.1``, ``local.edly.io``, or similar development domains.
 
 How it works
 ************
 
-Owly itself can run without this plugin.
 This plugin integrates Owly with Open edX by:
 
 - Exposing additional backend endpoints used by Owly for advanced capabilities.
