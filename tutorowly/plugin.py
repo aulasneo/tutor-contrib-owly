@@ -22,9 +22,11 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         # Each new setting is a pair: (setting_name, default_value).
         # Prefix your setting names with 'OWLY_'.
         ("OWLY_VERSION", __version__),
-        ("OWLY_ENABLE_CHAT", False),
         ("OWLY_DJANGO_APP", "openedx-owly-apis==2.0.1"),
-        ("OWLY_CHAT_SCRIPT_URL", "https://chat.owly.aulasneo.com/owly-chatbot-embed.min.js"),
+        (
+            "OWLY_CHAT_SCRIPT_URL",
+            "https://chat.owly.aulasneo.com/owly-chatbot-embed.min.js",
+        ),
         ("OWLY_CHAT_FLAG_PATH", "/api/v1/owly-config/enable_owly_chat/"),
     ]
 )
@@ -111,7 +113,9 @@ for path in glob(str(importlib_resources.files("tutorowly") / "patches" / "*")):
 
 
 if PLUGIN_SLOTS is not None:
-    for path in glob(str(importlib_resources.files("tutorowly") / "plugin_slots" / "*" / "*")):
+    for path in glob(
+        str(importlib_resources.files("tutorowly") / "plugin_slots" / "*" / "*")
+    ):
         with open(path, encoding="utf-8") as slot_file:
             mfe_name = os.path.basename(os.path.dirname(path))
             slot_name = os.path.basename(path)

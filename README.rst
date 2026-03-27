@@ -12,7 +12,7 @@ You do not need this plugin to run Owly.
 This Tutor plugin enhances Owly when used with Open edX by:
 
 - Adding extra API endpoints in Open edX to enable advanced features (analytics, course management, content creation, staff management, roles, etc.).
-- Injecting the Owly chat widget into LMS and MFE pages when ``OWLY_ENABLE_CHAT`` is enabled.
+- Injecting the Owly chat widget into LMS and MFE pages when the plugin is enabled.
 
 Installation
 ************
@@ -38,11 +38,7 @@ If you are enabling chat support, make sure the ``mfe`` plugin is enabled in Tut
 Configuration
 *************
 
-The following settings are available:
-
-- ``OWLY_ENABLE_CHAT``: Enable chat injection. Default: ``False``
-
-When chat is enabled, this plugin injects Owly into LMS and MFE pages.
+When the plugin is enabled, it injects Owly into LMS and MFE pages.
 You will need to build the MFE image and restart the environment.
 
 Chat visibility is controlled in the LMS by the Django waffle flag ``owly_chat.enable``.
@@ -64,6 +60,6 @@ How it works
 This plugin integrates Owly with Open edX by:
 
 - Exposing additional backend endpoints used by Owly for advanced capabilities.
-- Embedding the Owly chat widget across the LMS/MFE (when ``OWLY_ENABLE_CHAT`` is enabled).
+- Embedding the Owly chat widget across the LMS/MFE whenever the plugin is enabled.
 
 For a complete list of API endpoints, visit `Owly API Reference <https://github.com/aulasneo/openedx-owly-apis>`__.

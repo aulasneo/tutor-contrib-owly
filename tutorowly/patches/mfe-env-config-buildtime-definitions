@@ -1,4 +1,3 @@
-const OWLY_ENABLE_CHAT = {{ "true" if OWLY_ENABLE_CHAT else "false" }};
 const OWLY_CHAT_SCRIPT_URL = '{{ OWLY_CHAT_SCRIPT_URL }}';
 const OWLY_CHAT_FLAG_PATH = '{{ OWLY_CHAT_FLAG_PATH }}';
 const OWLY_SCRIPT_SELECTOR = 'script[data-owly-embed="true"]';
@@ -47,9 +46,6 @@ function injectOwlyScript(loadOptions = {}) {
 }
 
 async function loadOwlyScript() {
-  if (!OWLY_ENABLE_CHAT) {
-    return false;
-  }
   if (typeof window !== 'undefined' && window.self !== window.top) {
     return false;
   }
