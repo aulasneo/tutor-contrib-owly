@@ -4,12 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Version 20.0.1 (2026-03-27)
+## Unreleased
 
-- feat: align local development automation with the shared Tutor plugin `Makefile` targets, including `clean` and `PYTHON` override support
-- feat: align dev/test requirements and GitHub Actions workflows with the shared plugin maintenance setup
-- ref: restrict supported Python versions to 3.11 and 3.12 in packaging metadata
-- chore: ignore generated Tutor `config.yml` and `env/` artifacts from local test runs
+### Changed
+
+- Pass deterministic Owly loader context into Open edX MFEs through both `window.OwlyChatbotContext` and script `data-*` attributes.
+- Inject `platformType="openedx"` and `baseUrl=LMS_BASE_URL` for frontend runtime platform resolution instead of relying on hostname inference.
+- Auto-bootstrap the Owly loader from shared MFE config so pages without footer slots, including authn, can still load the chat script.
+- Keep chat activation controlled by the backend flag endpoint while removing the extra Tutor-side `OWLY_ENABLE_CHAT` gate.
 
 ## Version 20.0.0 (2026-03-26)
 
