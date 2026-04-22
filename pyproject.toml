@@ -25,9 +25,17 @@ classifiers = [
 
 ]
 dependencies = [
-    "tutor>=20.0.0,<21.0.0",
+    "tutor>=21.0.0,<22.0.0",
+    "black",
+    "pylint",
+    "twine>=6.2.0",
+    "build",
+    "mypy",
+    "isort",
+    "pkginfo>=1.12.0",
+    "pip-tools",
 ]
-optional-dependencies = { dev = ["tutor[dev]>=20.0.0,<21.0.0"] }
+optional-dependencies = { dev = ["tutor[dev]>=21.0.0,<22.0.0"] }
 
 # These fields will be set by hatch_build.py
 dynamic = ["version"]
